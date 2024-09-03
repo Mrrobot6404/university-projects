@@ -1,0 +1,430 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(207, 65%, 65%);
+  --title-color: hsl(207, 4%, 16%);
+  --text-color: hsl(0, 0%, 100%);
+  --text-color-light: hsl(210, 3%, 71%);
+  --body-color: hsl(207, 4%, 99%);
+  --container-color: hsl(207, 4%, 95%);
+
+  /* Change the first number */
+  /* Blue: 207 - Purple: 250 - Pink: 356 - Teal: 174 */
+  --gradient-color: linear-gradient(180deg,
+                      hsla(207, 48%, 72%, 0),
+                      hsla(207, 65%, 65%, 1));
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Inter", sans-serif;
+  --title-font: "Inter", sans-serif;
+  --biggest-font-size: 1.5rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+  --tiny-font-size: .625rem;
+
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-normal: 1;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/* Responsive typography */
+@media screen and (min-width: 1024px) {
+  :root {
+    --biggest-font-size: 3rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+    --tiny-font-size: .688rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: #000;
+  color: #fff;
+}
+
+h1, h2, h3 {
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+
+.aabsolute {
+  position: absolute;
+  top: 50px !important;
+  inset: 0;
+  justify-content: center;
+  display: inline-flex;
+  flex-direction: row;
+  z-index: -1;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.bg-shape1 {
+  width: 400px;
+  height: 400px;
+  border-radius: 9999px;
+  position: relative;
+  animation: one 10s infinite;
+}
+
+.bg-shape2 {
+  width: 300px;
+  height: 300px;
+  border-radius: 9999px;
+  position: relative;
+  animation: two 10s infinite;
+}
+
+@keyframes one {
+  0%{left: 0px; top: 0px;}
+  25%{left: -100px; top: 70px;}
+  50%{left: 20px; top: 150px;}
+  75%{left: 50px; top: 100px;}
+  100%{left: 0px; top: 0px;}
+}
+
+@keyframes two {
+  0%{left: 0px; top: 0px;}
+  25%{left: 50px; top: 10px;}
+  50%{left: 100px; top: 50px;}
+  75%{left: 50px; top: 100px;}
+  100%{left: 0px; top: 0px;}
+}
+
+.opacity-50 {
+  opacity: .5;
+}
+
+.bg-blur {
+  filter: blur(90px);
+}
+
+.bg-primary {
+  background-color: rgb(30, 0, 255);
+}
+
+.bg-teal {
+  background-color: rgb(255 , 72, 173);
+}
+
+
+.bg-purple {
+  background-color: rgb(140, 0, 215);
+}
+
+*/
+/*========== 
+    Color changes in some parts of 
+    the website, in light theme
+==========*/
+
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1024px;
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 2.5rem;
+}
+
+.section__border {
+  border-bottom: 1px solid var(--title-color);
+  padding-bottom: 3.5rem;
+}
+
+.section__title, 
+.section__subtitle {
+  text-align: center;
+}
+
+.section__title {
+  align-items: center;
+  width: 100%;
+  background: #C6C6C6;
+  background: linear-gradient(to top, #C6C6C6 0%, #666666 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 50px;
+  font-weight: 600;
+  letter-spacing: -0.05rem;
+  margin-bottom: .5rem;
+}
+
+.section__subtitle {
+  display: block;
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+  margin-bottom: 3rem;
+}
+
+.main {
+  overflow: hidden;
+  z-index: 1; /* For animation */
+}
+
+.main::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  z-index: -1;
+}
+
+.main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 400px;
+  width: 400px;
+  filter: blur(190px);
+  background-color: rgba(116, 8, 131, 0.918);
+  z-index: -1;
+}
+
+/*=============== PROJECTS ===============*/
+
+
+.projects__content {
+  display: grid;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.projects__img {
+  width: 250px;
+  border-radius: .75rem;
+  margin-bottom: 1.25rem;
+  cursor: pointer;
+}
+.projects__img:hover{
+  transform: scale(0.95);
+}
+
+
+.projects__img  {
+  transition: 0.6s;
+}
+
+.projects__img:hover{
+  transform: scale(1.1);
+}
+
+.projects__subtitle {
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+}
+
+.project__title {
+  font-size: var(--h2-font-size);
+  margin-bottom: 1.25rem;
+  margin: .5rem 0 1.25rem;
+}
+
+.projects__button {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .5rem;
+  color: var(--title-color);
+  font-size: var(--small-font-size);
+  margin-bottom: 60px;
+  color: #fff;
+}
+
+.projects__button i {
+  font-size: 1rem;
+  transition: transform .3s;
+}
+
+.projects__button:hover i {
+  transform: translateX(.25rem);
+}
+
+/* Swiper class */
+
+.project__container .swiper-button-prev::after,
+.project__container .swiper-button-next::after {
+  content: '';
+}
+
+
+.project__container .swiper-button-prev,
+.project__container .swiper-button-next {
+  width: initial;
+  height: initial;
+  margin: initial;
+  font-size: 2.2rem;
+  color: #fff;
+}
+
+.project__container .swiper-button-prev {
+  left: -0.7rem;
+  top: 4.5rem;
+}
+
+.project__container .swiper-button-next {
+  right: -0.7rem;
+  top: 4.5rem;
+}
+
+.project__container .swiper-pagination-bullets {
+  bottom: 0;
+}
+
+.project__container .swiper-pagination-bullets-active {
+  background-color: #a5a4a4;
+  opacity: initial;
+}
+
+.project__container .swiper-pagination-bullet-active {
+  background-color: #ffffff;
+}
+
+/*=============== SCROLL BAR ===============*/
+
+
+/*=============== SCROLL UP ===============*/
+
+
+/* Show Scroll Up*/
+
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  .projects__img {
+    width: 200px;
+    justify-self: center;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 576px) {
+  .project__container {
+    width: 400px;
+  }
+
+  .project__container {
+    overflow: hidden;
+  }
+
+  .project__container .swiper-button-prev {
+    left: 1rem;
+  }
+
+  .project__container .swiper-button-next {
+    right: 1rem;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .project__container {
+    width: 500px;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1048px) {
+
+  .container {
+    margin-inline: auto;
+  } 
+}
+
+
+@media screen and (min-width: 1200px) {
+
+  .section__subtitle {
+    margin-bottom: 5rem;
+  }
+
+  .home__title {
+    font-size: var(--biggest-font-size);
+  }
+
+  .project__container {
+    width: 100%;
+    
+  }
+
+  .project__container .swiper-button-prev,
+  .project__container .swiper-button-next {
+    font-style: 3rem;
+  }
+
+  .project__container .swiper-button-prev {
+    left: 1rem;
+  }
+
+  .project__container .swiper-button-next {
+    right: 1rem;
+  }
+
+  .project__container .swiper-slide {
+    margin-bottom: 6.5rem;
+  }
+
+  .projects__img {
+    width: 340px;
+    margin-bottom: 2rem;
+  }
+}
